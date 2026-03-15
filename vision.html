@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vision AI &amp; Perception — SYNAPEX PROTOCOL</title>
+<meta name="description" content="Multi-modal perception pipeline — the eyes and senses of SYNAPEX embodied intelligence.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .perception-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 20px 0;
+  }
+  .p-layer {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.4s var(--ease);
+    position: relative;
+    overflow: hidden;
+  }
+  .p-layer:hover {
+    border-color: var(--border2);
+    transform: translateX(6px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .p-layer-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    min-width: 36px;
+    flex-shrink: 0;
+  }
+  .p-layer-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 3px;
+  }
+  .p-layer-desc {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .p-layer::after {
+    content: '';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .p-layer:hover::after { opacity: 1; }
+
+  .scan-line-container {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    height: 280px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .scan-line-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(74,140,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74,140,255,0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .scan-beam {
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent2), transparent);
+    box-shadow: 0 0 20px var(--accent2);
+    animation: scanMove 3s ease-in-out infinite;
+  }
+  @keyframes scanMove {
+    0%, 100% { top: 10%; }
+    50% { top: 90%; }
+  }
+  .scan-crosshair {
+    position: relative;
+    z-index: 2;
+    width: 80px; height: 80px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: crosshairPulse 2s ease-in-out infinite;
+  }
+  .scan-crosshair::before {
+    content: '';
+    position: absolute;
+    width: 100px; height: 1px;
+    background: var(--accent);
+    opacity: 0.3;
+  }
+  .scan-crosshair::after {
+    content: '';
+    position: absolute;
+    width: 1px; height: 100px;
+    background: var(--accent);
+    opacity: 0.3;
+  }
+  @keyframes crosshairPulse {
+    0%, 100% { transform: scale(1); border-color: var(--accent); }
+    50% { transform: scale(1.1); border-color: var(--accent2); }
+  }
+  .scan-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<canvas id="particles-canvas"></canvas>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo-mark"><span>S</span></div>
+    <span class="nav-brand-name">SYNAPEX</span>
+    <div class="nav-status"><div class="nav-status-dot"></div>Research</div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="lab.html">Laboratory</a></li>
+    <li><a href="muscles.html">Muscles</a></li>
+    <li><a href="vision.html" class="active">Vision AI</a></li>
+    <li><a href="mind.html">Mind</a></li>
+    <li><a href="synx.html">$SYNX</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="whitepaper 2.html" class="nav-cta">Whitepaper</a></li>
+  </ul>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page">
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-label"><span class="dot" style="background:var(--accent2);"></span>Technology II &mdash; Perception</div>
+  <h1 class="page-hero-title">Vision AI &amp; <span class="accent2">Perception</span></h1>
+  <p class="page-hero-desc">
+    Multi-modal perception pipeline that fuses depth, RGB, and proprioception into structured
+    scene understanding &mdash; the eyes, ears, and spatial awareness of embodied intelligence.
+  </p>
+  <div class="page-hero-deco" style="border-color:rgba(0,212,168,0.15);"></div>
+</div>
+
+<!-- THE CHALLENGE -->
+<section class="section">
+  <div class="split">
+    <div class="reveal-left">
+      <div class="badge teal">The Challenge</div>
+      <h2 class="section-title">Seeing Is Not <span class="accent2">Understanding</span></h2>
+      <p style="color:var(--body);line-height:1.75;margin-bottom:16px;">
+        A camera captures pixels. A depth sensor measures distances. But embodied intelligence
+        needs more than raw data &mdash; it needs to understand what it sees: where objects are in 3D space,
+        what they are, how they relate to each other, and what they mean for the task at hand.
+      </p>
+      <p style="color:var(--body);line-height:1.75;margin-bottom:16px;">
+        The SYNAPEX perception system fuses multiple sensor modalities into a unified scene
+        representation that the brain modules can reason about, plan with, and act on.
+        This is not just computer vision &mdash; it is the perceptual foundation of autonomous existence.
+      </p>
+      <p style="color:var(--body);line-height:1.75;">
+        Our approach is fundamentally different from single-model vision systems.
+        Perception is decomposed into specialised stages, each producing structured output
+        that feeds the next &mdash; creating a pipeline that is interpretable, modular, and debuggable.
+      </p>
+    </div>
+    <div class="reveal-right">
+      <div class="scan-line-container">
+        <div class="scan-beam"></div>
+        <div class="scan-crosshair">
+          <span style="font-size:24px;">&#128065;</span>
+        </div>
+        <div class="scan-text">Multi-modal perception active</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERCEPTION PIPELINE -->
+<section class="section" style="border-top:1px solid var(--border);">
+  <div class="section-header reveal">
+    <div class="section-label">Perception Pipeline</div>
+    <h2 class="section-title">From Raw Sensors to <span class="accent">Scene Understanding</span></h2>
+    <p class="section-desc">Seven layers of processing, each adding semantic richness to the raw input.</p>
+  </div>
+
+  <div style="max-width:750px;margin:0 auto;" class="perception-stack stagger">
+    <div class="p-layer reveal">
+      <div class="p-layer-num" style="color:var(--accent);">01</div>
+      <div>
+        <div class="p-layer-title">Sensor Fusion</div>
+        <div class="p-layer-desc">RGB cameras + depth sensors + proprioceptive data aligned into a unified spatio-temporal frame. Time-synchronized multi-modal input.</div>
+      </div>
+    </div>
+    <div class="p-layer reveal">
+      <div class="p-layer-num" style="color:var(--accent);">02</div>
+      <div>
+        <div class="p-layer-title">Feature Extraction</div>
+        <div class="p-layer-desc">Backbone network produces dense feature maps. Multi-scale representation capturing both fine detail and global context. Pre-trained on massive datasets, fine-tuned for embodied tasks.</div>
+      </div>
+    </div>
+    <div class="p-layer reveal">
+      <div class="p-layer-num" style="color:var(--accent2);">03</div>
+      <div>
+        <div class="p-layer-title">Object Detection &amp; Segmentation</div>
+        <div class="p-layer-desc">Instance-level detection and pixel-precise segmentation. Every object identified, located in 3D, and tracked across frames. Real-time panoptic segmentation.</div>
+      </div>
+    </div>
+    <div class="p-layer reveal">
+      <div class="p-layer-num" style="color:var(--accent2);">04</div>
+      <div>
+        <div class="p-layer-title">Depth Estimation &amp; 3D Reconstruction</div>
+        <div class="p-layer-desc">Dense depth maps refined with monocular depth estimation. Point cloud generation. Local 3D mesh reconstruction for manipulation targets.</div>
+      </div>
+    </div>
+    <div class="p-layer reveal">
+      <div class="p-layer-num" style="color:var(--purple);">05</div>
+      <div>
+        <div class="p-layer-title">Spatial Relationship Mapping</div>
+        <div class="p-layer-desc">Scene graph construction: which objects are near which, what supports what, what occludes what. Semantic spatial reasoning for navigation and manipulation.</div>
+      </div>
+    </div>
+    <div class="p-layer reveal">
+      <div class="p-layer-num" style="color:var(--purple);">06</div>
+      <div>
+        <div class="p-layer-title">Context &amp; Intent Estimation</div>
+        <div class="p-layer-desc">What is happening in this scene? Activity recognition, human pose estimation, gesture detection. Predicting where things are going, not just where they are.</div>
+      </div>
+    </div>
+    <div class="p-layer reveal">
+      <div class="p-layer-num" style="color:var(--gold);">07</div>
+      <div>
+        <div class="p-layer-title">Structured Scene Representation</div>
+        <div class="p-layer-desc">Final output: a machine-readable scene graph with 3D positions, object identities, relationships, and context. Ready for the Reasoning and Planning modules of the AI brain.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SENSOR MODALITIES -->
+<section class="section">
+  <div class="section-header center reveal">
+    <div class="section-label">Sensor Modalities</div>
+    <h2 class="section-title">Multi-Modal <span class="accent2">Awareness</span></h2>
+  </div>
+
+  <div class="grid-3 stagger">
+    <div class="card reveal">
+      <div class="card-icon teal">&#128247;</div>
+      <div class="card-title">RGB Vision</div>
+      <div class="card-text">High-resolution stereo cameras for colour, texture, and pattern recognition. The primary source of semantic information about the external world.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon blue">&#128752;</div>
+      <div class="card-title">Depth Sensing</div>
+      <div class="card-text">Structured-light and time-of-flight sensors for precise distance measurement. Creates a 3D point cloud of the environment at every frame.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon purple">&#128225;</div>
+      <div class="card-title">Proprioception</div>
+      <div class="card-text">Internal body state from the muscle system: joint positions, forces, velocities. Fused with external sensors for a complete understanding of the body in its environment.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon gold">&#127897;</div>
+      <div class="card-title">Audio Processing</div>
+      <div class="card-text">Directional microphone array for sound localisation, speech recognition, and environmental audio classification. Hearing adds context that vision alone cannot provide.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon red">&#127777;</div>
+      <div class="card-title">Thermal Sensing</div>
+      <div class="card-text">Infrared thermal imaging for temperature awareness, human detection in low light, and material identification. Critical for safe interaction with the natural world.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon teal">&#128752;</div>
+      <div class="card-title">IMU &amp; Vestibular</div>
+      <div class="card-text">Inertial measurement for balance, acceleration, and orientation. The vestibular analog for embodied systems &mdash; essential for locomotion and dynamic stability.</div>
+    </div>
+  </div>
+</section>
+
+<!-- LAB INTEGRATION -->
+<section class="section" style="border-top:1px solid var(--border);">
+  <div class="section-header reveal">
+    <div class="section-label">Lab Integration</div>
+    <h2 class="section-title">Vision Modules in the <span class="accent">Laboratory</span></h2>
+  </div>
+
+  <p class="reveal" style="color:var(--body);line-height:1.75;max-width:700px;margin-bottom:32px;">
+    Each stage of the perception pipeline is published as a separate module in the SYNAPEX Lab.
+    Researchers can use the full pipeline or pick individual modules &mdash; face recognition,
+    object detection, depth estimation &mdash; for their own projects. Every module earns $SYNX for its creator.
+  </p>
+
+  <div class="grid-3 stagger">
+    <div class="module-card reveal">
+      <div class="module-preview">
+        <span class="module-status soon">Phase 1</span>
+        <span class="module-icon">&#128373;</span>
+      </div>
+      <div class="module-body">
+        <div class="module-title">Face Detection &amp; Recognition</div>
+        <div class="module-desc">Real-time multi-face detection and identification. Extracted from the perception pipeline as a standalone deployable module.</div>
+        <div class="module-tags">
+          <span class="module-tag">CV</span><span class="module-tag">Biometric</span><span class="module-tag">Edge</span>
+        </div>
+      </div>
+    </div>
+    <div class="module-card reveal">
+      <div class="module-preview" style="background:linear-gradient(135deg,var(--surface2),rgba(0,212,168,0.04));">
+        <span class="module-status dev">In Dev</span>
+        <span class="module-icon">&#129529;</span>
+      </div>
+      <div class="module-body">
+        <div class="module-title">3D Face Scan</div>
+        <div class="module-desc">RGB-D face scanning with mesh generation. Landmark extraction, expression tracking. Publishable for avatar, health, and security applications.</div>
+        <div class="module-tags">
+          <span class="module-tag">3D</span><span class="module-tag">Depth</span><span class="module-tag">Mesh</span>
+        </div>
+      </div>
+    </div>
+    <div class="module-card reveal">
+      <div class="module-preview" style="background:linear-gradient(135deg,var(--surface2),rgba(192,132,252,0.04));">
+        <span class="module-status dev">In Dev</span>
+        <span class="module-icon">&#128065;</span>
+      </div>
+      <div class="module-body">
+        <div class="module-title">Scene Segmentation</div>
+        <div class="module-desc">Panoptic segmentation: every pixel classified, every instance segmented. The foundation for spatial reasoning in embodied AI.</div>
+        <div class="module-tags">
+          <span class="module-tag">Panoptic</span><span class="module-tag">Semantic</span><span class="module-tag">Instance</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:48px;" class="reveal">
+    <a href="lab.html" class="btn btn-primary">See All Modules</a>
+    <a href="mind.html" class="btn btn-outline" style="margin-left:12px;">Next: Modular Mind &rarr;</a>
+  </div>
+</section>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">SYNAPEX PROTOCOL</div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="lab.html">Lab</a></li>
+      <li><a href="muscles.html">Muscles</a></li>
+      <li><a href="mind.html">Mind</a></li>
+      <li><a href="synx.html">$SYNX</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="footer-copy">v1.0 &middot; 2026</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Virtual Research Laboratory — SYNAPEX PROTOCOL</title>
+<meta name="description" content="Train models, build AI modules, and deploy solutions in the SYNAPEX Virtual Research Laboratory.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<canvas id="particles-canvas"></canvas>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo-mark"><span>S</span></div>
+    <span class="nav-brand-name">SYNAPEX</span>
+    <div class="nav-status"><div class="nav-status-dot"></div>Lab Online</div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="lab.html" class="active">Laboratory</a></li>
+    <li><a href="muscles.html">Muscles</a></li>
+    <li><a href="vision.html">Vision AI</a></li>
+    <li><a href="mind.html">Mind</a></li>
+    <li><a href="synx.html">$SYNX</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="whitepaper 2.html" class="nav-cta">Whitepaper</a></li>
+  </ul>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page">
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-label"><span class="dot"></span>Virtual Research Laboratory</div>
+  <h1 class="page-hero-title">The SYNAPEX <span class="accent2">Lab</span></h1>
+  <p class="page-hero-desc">
+    An open, token-gated research platform. Train models, build specialized AI modules,
+    share your work &mdash; and access the tools that were once locked behind institutional walls.
+  </p>
+  <div class="page-hero-deco"></div>
+</div>
+
+<!-- LAB INFRASTRUCTURE -->
+<section class="section">
+  <div class="section-header reveal">
+    <div class="section-label">Platform Infrastructure</div>
+    <h2 class="section-title">Everything You Need to <span class="accent">Research</span></h2>
+    <p class="section-desc">From raw GPU compute to pre-trained model repositories — a complete stack for independent AI research.</p>
+  </div>
+
+  <div class="grid-3 stagger">
+    <div class="card reveal">
+      <div class="card-icon blue">&#128421;</div>
+      <div class="card-title">Compute Marketplace</div>
+      <div class="card-text">Distributed GPU network accessible via $SYNX token. Pay-as-you-go training runs, inference endpoints, simulation environments. Real infrastructure, auditable on-chain.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon teal">&#128300;</div>
+      <div class="card-title">Model Repository</div>
+      <div class="card-text">Access SYNAPEX-trained models: vision systems, motor controllers, perception modules. Fine-tune on your data. Build on protocol research without starting from scratch.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon purple">&#128202;</div>
+      <div class="card-title">Simulation Suite</div>
+      <div class="card-text">Physics-accurate environments for training embodied AI. Pre-built scenarios for locomotion, manipulation, navigation. Sim-to-real transfer tools included.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon gold">&#127758;</div>
+      <div class="card-title">Collaboration Network</div>
+      <div class="card-text">Connect with inventors, developers, researchers globally. Share datasets, co-author experiments, form research teams. A living community, not a static tool.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon blue">&#128499;</div>
+      <div class="card-title">Research DAO</div>
+      <div class="card-text">Token holders vote on research priorities, compute allocation, and platform evolution. The community decides what SYNAPEX builds next.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon red">&#128737;</div>
+      <div class="card-title">IP Protection</div>
+      <div class="card-text">On-chain IP registration for every research output. Inventors retain ownership. Smart contract licensing enables monetisation without surrendering IP.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULE LIBRARY -->
+<section class="section" style="border-top:1px solid var(--border);background:linear-gradient(180deg,transparent,rgba(74,140,255,0.012),transparent);">
+  <div class="section-header center reveal">
+    <div class="section-label">Module Library</div>
+    <h2 class="section-title">Plug-and-Play <span class="accent">AI Modules</span></h2>
+    <p class="section-desc">
+      Build, train, and share specialised AI modules. From face recognition to scene understanding &mdash;
+      each module is a self-contained unit ready for integration.
+    </p>
+  </div>
+
+  <div class="grid-3 stagger">
+    <div class="module-card reveal">
+      <div class="module-preview">
+        <span class="module-status soon">Phase 1</span>
+        <span class="module-icon">&#128373;</span>
+      </div>
+      <div class="module-body">
+        <div class="module-title">Face Recognition</div>
+        <div class="module-desc">Real-time face detection, identification, and verification. Multi-angle support, low-light optimization. Deployable as API or edge model.</div>
+        <div class="module-tags">
+          <span class="module-tag">Computer Vision</span>
+          <span class="module-tag">Biometric</span>
+          <span class="module-tag">Real-time</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="module-card reveal">
+      <div class="module-preview" style="background:linear-gradient(135deg,var(--surface2),rgba(0,212,168,0.04));">
+        <span class="module-status soon">Phase 1</span>
+        <span class="module-icon">&#129529;</span>
+      </div>
+      <div class="module-body">
+        <div class="module-title">3D Face Scanning</div>
+        <div class="module-desc">Depth-based facial geometry reconstruction. Generate detailed 3D mesh from RGB-D input. Landmark extraction, expression tracking.</div>
+        <div class="module-tags">
+          <span class="module-tag">3D Reconstruction</span>
+          <span class="module-tag">Depth Sensing</span>
+          <span class="module-tag">Mesh</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="module-card reveal">
+      <div class="module-preview" style="background:linear-gradient(135deg,var(--surface2),rgba(192,132,252,0.04));">
+        <span class="module-status dev">In Dev</span>
+        <span class="module-icon">&#128065;</span>
+      </div>
+      <div class="module-body">
+        <div class="module-title">Object Detection</div>
+        <div class="module-desc">Real-time multi-class object detection and instance segmentation. Optimized for both cloud inference and edge deployment.</div>
+        <div class="module-tags">
+          <span class="module-tag">Detection</span>
+          <span class="module-tag">Segmentation</span>
+          <span class="module-tag">Edge AI</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="module-card reveal">
+      <div class="module-preview" style="background:linear-gradient(135deg,var(--surface2),rgba(232,200,122,0.04));">
+        <span class="module-status dev">In Dev</span>
+        <span class="module-icon">&#128100;</span>
+      </div>
+      <div class="module-body">
+        <div class="module-title">Pose Estimation</div>
+        <div class="module-desc">Full-body and hand pose estimation from single RGB. Skeleton tracking, gesture recognition, action classification.</div>
+        <div class="module-tags">
+          <span class="module-tag">Skeleton</span>
+          <span class="module-tag">Gesture</span>
+          <span class="module-tag">Body Tracking</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="module-card reveal">
+      <div class="module-preview" style="background:linear-gradient(135deg,var(--surface2),rgba(255,85,119,0.04));">
+        <span class="module-status dev">Planned</span>
+        <span class="module-icon">&#128483;</span>
+      </div>
+      <div class="module-body">
+        <div class="module-title">Speech Recognition</div>
+        <div class="module-desc">Multi-language automatic speech recognition with speaker diarization. Low-latency streaming and batch processing modes.</div>
+        <div class="module-tags">
+          <span class="module-tag">ASR</span>
+          <span class="module-tag">NLP</span>
+          <span class="module-tag">Streaming</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="module-card reveal">
+      <div class="module-preview" style="background:linear-gradient(135deg,var(--surface2),rgba(74,140,255,0.04));">
+        <span class="module-status dev">Planned</span>
+        <span class="module-icon">&#127916;</span>
+      </div>
+      <div class="module-body">
+        <div class="module-title">Scene Understanding</div>
+        <div class="module-desc">Semantic and panoptic scene segmentation. Spatial relationship mapping. Environment context extraction for embodied navigation.</div>
+        <div class="module-tags">
+          <span class="module-tag">Panoptic</span>
+          <span class="module-tag">Navigation</span>
+          <span class="module-tag">Spatial AI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout teal reveal" style="margin-top:48px;max-width:800px;margin-left:auto;margin-right:auto;">
+    <span class="callout-label">Community Modules</span>
+    <p>Any researcher can publish their own modules to the library. Modules are reviewed by the community,
+    and creators earn $SYNX rewards based on usage. Build once, get paid every time someone uses your work.</p>
+  </div>
+</section>
+
+<!-- CONSOLE / WORKFLOW PREVIEW -->
+<section class="section">
+  <div class="section-header reveal">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">From Idea to <span class="accent2">Deployment</span></h2>
+  </div>
+
+  <div class="console reveal">
+    <div class="console-bar">
+      <div class="console-dot r"></div>
+      <div class="console-dot y"></div>
+      <div class="console-dot g"></div>
+      <span class="console-title">synapex-lab &mdash; workflow</span>
+    </div>
+    <div class="console-body">
+<pre>
+<span class="dim">$</span> <span class="hl">synapex</span> lab init --project "face-recognition-v2"
+
+<span class="hl2">✓</span> Project created: <span class="hl">face-recognition-v2</span>
+<span class="hl2">✓</span> GPU allocation: <span class="hg">4x RTX 4090</span> via compute marketplace
+<span class="hl2">✓</span> Base model loaded: <span class="hp">synapex/vision-backbone-v1</span>
+
+<span class="dim">$</span> <span class="hl">synapex</span> train --config train.yaml --epochs 120
+
+<span class="hl2">►</span> Training started on <span class="hg">distributed cluster</span>
+  Epoch  <span class="hl">032</span>/120  |  Loss: <span class="hl2">0.0234</span>  |  Acc: <span class="hl2">98.7%</span>  |  ETA: 2h 14m
+  <span class="dim">...</span>
+<span class="hl2">✓</span> Training complete. Model saved: <span class="hp">models/face-rec-v2.pt</span>
+
+<span class="dim">$</span> <span class="hl">synapex</span> publish --module face-rec-v2 --license MIT
+
+<span class="hl2">✓</span> Module published to <span class="hl">SYNAPEX Module Library</span>
+<span class="hl2">✓</span> IP registered on-chain: <span class="hg">0x7a3f...c4e2</span>
+<span class="hl2">✓</span> Now earning <span class="hg">$SYNX</span> per inference call
+</pre>
+    </div>
+  </div>
+
+  <div class="grid-3 stagger" style="margin-top:40px;">
+    <div class="card reveal" style="text-align:center;">
+      <div style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--accent);margin-bottom:8px;">01</div>
+      <div class="card-title">Initialize</div>
+      <div class="card-text">Create a project, select compute resources, load a base model from the repository. Everything configured in one command.</div>
+    </div>
+    <div class="card reveal" style="text-align:center;">
+      <div style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--accent2);margin-bottom:8px;">02</div>
+      <div class="card-title">Train &amp; Iterate</div>
+      <div class="card-text">Train on distributed GPU clusters. Monitor progress, adjust hyperparameters, run experiments. Pay only for compute you use.</div>
+    </div>
+    <div class="card reveal" style="text-align:center;">
+      <div style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--gold);margin-bottom:8px;">03</div>
+      <div class="card-title">Publish &amp; Earn</div>
+      <div class="card-text">Publish your model as a module. Register IP on-chain. Earn $SYNX every time another researcher or developer uses your work.</div>
+    </div>
+  </div>
+</section>
+
+<!-- GPU INFRASTRUCTURE -->
+<section class="section" style="border-top:1px solid var(--border);">
+  <div class="section-header reveal">
+    <div class="section-label">Compute Infrastructure</div>
+    <h2 class="section-title">GPU Power — <span class="gold">Owned, Not Rented</span></h2>
+  </div>
+
+  <div class="grid-3 stagger">
+    <div class="card reveal">
+      <div class="card-icon blue">&#9889;</div>
+      <div class="card-title">Pre-IDO &middot; Cloud Phase</div>
+      <div class="card-text">Akash Network &amp; Vast.ai for agile R&amp;D. Maximum flexibility, instant scale. Full focus on model development with zero hardware commitment.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon teal">&#128421;</div>
+      <div class="card-title">Post-IDO &middot; First Server</div>
+      <div class="card-text">Dedicated 4&times; RTX 4090 cluster. Protocol-owned, DAO-governed asset. Idle capacity rented for $SYNX. Cloud reserved for burst workloads only.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon gold">&#127981;</div>
+      <div class="card-title">Series A &middot; Full Cluster</div>
+      <div class="card-text">20&ndash;50 GPU colocation deployment. Complete compute independence. External revenue from cluster access. Strongest possible token backing.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS MODEL -->
+<section class="section">
+  <div class="callout gold reveal">
+    <span class="callout-label">Access Model</span>
+    <p>Basic platform access is open to all. Advanced compute, premium models, and governance voting
+    require $SYNX token holdings. Contributors who publish research, contribute datasets, or build
+    platform tools earn $SYNX rewards &mdash; creating a virtuous cycle between participation and access.</p>
+  </div>
+
+  <div style="text-align:center;margin-top:40px;" class="reveal">
+    <a href="synx.html" class="btn btn-primary" style="margin-right:12px;">Get $SYNX</a>
+    <a href="about.html" class="btn btn-outline">Learn More</a>
+  </div>
+</section>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">SYNAPEX PROTOCOL</div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="muscles.html">Muscles</a></li>
+      <li><a href="vision.html">Vision AI</a></li>
+      <li><a href="mind.html">Mind</a></li>
+      <li><a href="synx.html">$SYNX</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="footer-copy">v1.0 &middot; 2026</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

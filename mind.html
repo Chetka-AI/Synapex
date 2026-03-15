@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modular Mind — SYNAPEX PROTOCOL</title>
+<meta name="description" content="Multi-agent brain architecture — the Predator-Prey AI mind of SYNAPEX Protocol.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  #neuralCanvas { display: block; width: 100%; height: auto; }
+
+  .mind-module {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s var(--ease);
+  }
+  .mind-module:hover {
+    border-color: var(--border2);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+  }
+  .mind-module-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .mind-module-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .mind-module-desc {
+    font-size: 14px;
+    color: var(--body);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+  .mind-module-io {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .mind-io {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+  }
+  .mind-io.input  { background: rgba(74,140,255,0.08); color: var(--accent); border: 1px solid rgba(74,140,255,0.15); }
+  .mind-io.output { background: rgba(0,212,168,0.08); color: var(--accent2); border: 1px solid rgba(0,212,168,0.15); }
+  .mind-io.veto   { background: rgba(255,85,119,0.08); color: var(--accent3); border: 1px solid rgba(255,85,119,0.15); }
+
+  .flow-arrow {
+    text-align: center;
+    padding: 8px 0;
+    color: var(--muted);
+    font-size: 18px;
+    opacity: 0.4;
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<canvas id="particles-canvas"></canvas>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo-mark"><span>S</span></div>
+    <span class="nav-brand-name">SYNAPEX</span>
+    <div class="nav-status"><div class="nav-status-dot"></div>Research</div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="lab.html">Laboratory</a></li>
+    <li><a href="muscles.html">Muscles</a></li>
+    <li><a href="vision.html">Vision AI</a></li>
+    <li><a href="mind.html" class="active">Mind</a></li>
+    <li><a href="synx.html">$SYNX</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="whitepaper 2.html" class="nav-cta">Whitepaper</a></li>
+  </ul>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page">
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-label"><span class="dot" style="background:var(--purple);"></span>Technology III &mdash; Intelligence</div>
+  <h1 class="page-hero-title">The Modular <span class="purple">Mind</span></h1>
+  <p class="page-hero-desc">
+    A multi-agent brain architecture where no single model holds control. Intelligence emerges from
+    the interaction of specialised modules &mdash; inspired by ecological predator-prey dynamics.
+  </p>
+  <div class="page-hero-deco" style="border-color:rgba(192,132,252,0.15);"></div>
+</div>
+
+<!-- WHY NOT MONOLITHIC -->
+<section class="section">
+  <div class="split">
+    <div class="reveal-left">
+      <div class="badge purple">The Problem</div>
+      <h2 class="section-title">Why Monolithic AI <span class="accent3">Fails</span></h2>
+      <p style="color:var(--body);line-height:1.75;margin-bottom:16px;">
+        Every major AI system in deployment today is architecturally monolithic. A single model
+        responsible for perception, reasoning, planning, and action. This creates a brittle architecture:
+        one point of failure, one locus of control, one surface for catastrophic error.
+      </p>
+      <p style="color:var(--body);line-height:1.75;margin-bottom:16px;">
+        More fundamentally, monolithic architectures produce behaviour that is statistically averaged
+        rather than genuinely reasoned. A system with one decision-maker cannot check itself,
+        disagree with itself, or develop the internal tension that produces careful, considered,
+        adaptive behaviour.
+      </p>
+      <p style="color:var(--body);line-height:1.75;">
+        Biological minds are not single models. They are ecosystems of competing and cooperating
+        processes &mdash; each specialised, each capable of overriding others. The result is genuinely
+        autonomous behaviour that no current AI architecture replicates.
+      </p>
+    </div>
+    <div class="reveal-right">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;overflow:hidden;">
+        <canvas id="neuralCanvas" width="480" height="320"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREDATOR-PREY -->
+<section class="section" style="border-top:1px solid var(--border);">
+  <div class="section-header center reveal">
+    <div class="section-label">Core Architecture</div>
+    <h2 class="section-title">The <span class="gold">Predator-Prey</span> Principle</h2>
+    <p class="section-desc">
+      In a healthy ecosystem, no single organism dominates unchecked.
+      Every apex predator is simultaneously prey to something. This principle is the key to resilient intelligence.
+    </p>
+  </div>
+
+  <div class="callout gold reveal" style="max-width:700px;margin:0 auto 48px;">
+    <span class="callout-label">Core Insight</span>
+    <p>Applied to AI architecture, the predator-prey principle produces a system of specialised modules
+    where each module's output is the input &mdash; and the constraint &mdash; on at least one other module.
+    No single module can dominate the decision process. Pathological outputs are naturally suppressed
+    by the response of others.</p>
+  </div>
+</section>
+
+<!-- THE SIX MODULES -->
+<section class="section">
+  <div class="section-header reveal">
+    <div class="section-label">Brain Modules</div>
+    <h2 class="section-title">Six Specialised <span class="accent">Agents</span></h2>
+    <p class="section-desc">Each module has a defined role, defined inputs and outputs, and defined constraints from other modules.</p>
+  </div>
+
+  <div style="max-width:750px;margin:0 auto;" class="stagger">
+
+    <div class="mind-module reveal">
+      <span class="mind-module-num" style="color:var(--accent);">Module 01</span>
+      <div class="mind-module-title">&#128065; Perception</div>
+      <div class="mind-module-desc">Processes multi-modal sensor input: vision (depth + RGB), proprioception from the muscle system, and environmental context. Produces structured scene representations for downstream modules.</div>
+      <div class="mind-module-io">
+        <span class="mind-io input">IN: Raw sensors</span>
+        <span class="mind-io output">OUT: Scene graph</span>
+        <span class="mind-io output">OUT: Feature maps</span>
+      </div>
+    </div>
+    <div class="flow-arrow">&darr;</div>
+
+    <div class="mind-module reveal">
+      <span class="mind-module-num" style="color:var(--accent2);">Module 02</span>
+      <div class="mind-module-title">&#127919; Attention</div>
+      <div class="mind-module-desc">Dynamically allocates computational resources across the perception field. Constrains and focuses the reasoning module &mdash; acting as a biological attention system, filtering noise before it reaches higher cognition.</div>
+      <div class="mind-module-io">
+        <span class="mind-io input">IN: Scene graph</span>
+        <span class="mind-io output">OUT: Focus signal</span>
+        <span class="mind-io output">OUT: Filtered percept</span>
+      </div>
+    </div>
+    <div class="flow-arrow">&darr;</div>
+
+    <div class="mind-module reveal">
+      <span class="mind-module-num" style="color:var(--accent);">Module 03</span>
+      <div class="mind-module-title">&#128173; Reasoning</div>
+      <div class="mind-module-desc">Abstract symbolic and sub-symbolic reasoning over the attended perception field. Generates candidate action plans subject to validation by the Conflict Arbiter. The core cognitive engine.</div>
+      <div class="mind-module-io">
+        <span class="mind-io input">IN: Filtered percept</span>
+        <span class="mind-io output">OUT: Candidate plans</span>
+        <span class="mind-io output">OUT: Confidence scores</span>
+      </div>
+    </div>
+    <div class="flow-arrow">&darr; &#8644;</div>
+
+    <div class="mind-module reveal" style="border-left:3px solid var(--gold);">
+      <span class="mind-module-num" style="color:var(--gold);">Arbiter</span>
+      <div class="mind-module-title">&#9878;&#65039; Conflict Arbiter</div>
+      <div class="mind-module-desc">The system's immune function. Evaluates outputs from all modules for internal consistency, safety constraints, and goal alignment. The only module with veto power &mdash; but unable to initiate actions itself.</div>
+      <div class="mind-module-io">
+        <span class="mind-io input">IN: All module outputs</span>
+        <span class="mind-io veto">VETO: Safety override</span>
+        <span class="mind-io output">OUT: Validated plan</span>
+      </div>
+    </div>
+    <div class="flow-arrow">&darr;</div>
+
+    <div class="mind-module reveal">
+      <span class="mind-module-num" style="color:var(--accent2);">Module 05</span>
+      <div class="mind-module-title">&#128506; Planning</div>
+      <div class="mind-module-desc">Translates approved reasoning outputs into temporal action sequences. Operates at multiple time horizons &mdash; from sub-second motor planning to long-horizon goal pursuit.</div>
+      <div class="mind-module-io">
+        <span class="mind-io input">IN: Validated plan</span>
+        <span class="mind-io output">OUT: Action sequence</span>
+        <span class="mind-io output">OUT: Timeline</span>
+      </div>
+    </div>
+    <div class="flow-arrow">&darr;</div>
+
+    <div class="mind-module reveal" style="border-left:3px solid var(--purple);">
+      <span class="mind-module-num" style="color:var(--purple);">Module 06</span>
+      <div class="mind-module-title">&#129470; Motor Control</div>
+      <div class="mind-module-desc">The interface between intelligence and body. Translates planned actions into activation signals for the SYNAPEX muscle system. Trained via RL with continuous proprioceptive feedback.</div>
+      <div class="mind-module-io">
+        <span class="mind-io input">IN: Action sequence</span>
+        <span class="mind-io output">OUT: Muscle activation</span>
+        <span class="mind-io output">LOOP: Proprioceptive feedback</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY IT MATTERS -->
+<section class="section" style="border-top:1px solid var(--border);">
+  <div class="section-header center reveal">
+    <div class="section-label">Implications</div>
+    <h2 class="section-title">Why This <span class="accent2">Matters</span></h2>
+  </div>
+
+  <div class="grid-3 stagger">
+    <div class="card reveal">
+      <div class="card-icon teal">&#128737;</div>
+      <div class="card-title">Inherent Safety</div>
+      <div class="card-text">Safety is not a feature added on top &mdash; it is the architecture itself. The Conflict Arbiter vetoes dangerous actions before they reach the body. No single module can act unilaterally.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon blue">&#128736;</div>
+      <div class="card-title">Robustness</div>
+      <div class="card-text">If one module produces pathological output, the others compensate. The system degrades gracefully rather than failing catastrophically. True fault tolerance at the architectural level.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon gold">&#128269;</div>
+      <div class="card-title">Interpretability</div>
+      <div class="card-text">Each module has defined inputs and outputs. You can trace any decision through the chain: why did the system act this way? Which module proposed it? Who approved it?</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon purple">&#128200;</div>
+      <div class="card-title">Scalability</div>
+      <div class="card-text">New modules can be added without retraining the entire system. Specialise for new domains by plugging in new perception or reasoning modules. Modular by design.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon red">&#9889;</div>
+      <div class="card-title">Emergent Intelligence</div>
+      <div class="card-text">The whole is greater than the sum of parts. Decisions that emerge from multi-agent interaction are more nuanced, more robust, and more aligned than any single model could produce.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon teal">&#128257;</div>
+      <div class="card-title">Biological Analogy</div>
+      <div class="card-text">This is how biological minds work. Not one model, but an ecosystem. The SYNAPEX mind architecture is the first serious attempt to replicate this principle in artificial intelligence.</div>
+    </div>
+  </div>
+</section>
+
+<!-- NAV -->
+<section class="section" style="text-align:center;">
+  <div class="reveal">
+    <a href="muscles.html" class="btn btn-outline">&larr; Artificial Muscles</a>
+    <a href="synx.html" class="btn btn-primary" style="margin-left:12px;">$SYNX Token &rarr;</a>
+  </div>
+</section>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">SYNAPEX PROTOCOL</div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="lab.html">Lab</a></li>
+      <li><a href="muscles.html">Muscles</a></li>
+      <li><a href="vision.html">Vision AI</a></li>
+      <li><a href="synx.html">$SYNX</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="footer-copy">v1.0 &middot; 2026</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+(function(){
+  const c = document.getElementById('neuralCanvas');
+  if (!c) return;
+  const ctx = c.getContext('2d');
+  const W = c.width, H = c.height;
+
+  const modules = [
+    { x: 80,  y: 55,  label: 'PERCEPTION',  color: '#4a8cff' },
+    { x: 400, y: 55,  label: 'ATTENTION',    color: '#00d4a8' },
+    { x: 80,  y: 160, label: 'REASONING',    color: '#4a8cff' },
+    { x: 400, y: 160, label: 'ARBITER',      color: '#e8c87a' },
+    { x: 80,  y: 265, label: 'PLANNING',     color: '#00d4a8' },
+    { x: 400, y: 265, label: 'MOTOR',        color: '#c084fc' },
+  ];
+  const conns = [[0,1],[0,2],[1,0],[1,2],[2,3],[2,4],[3,2],[3,5],[4,5],[5,0]];
+  let pulses = [], frame = 0;
+
+  function spawn() {
+    const c2 = conns[Math.floor(Math.random()*conns.length)];
+    pulses.push({ from:c2[0], to:c2[1], t:0, speed:0.007+Math.random()*0.007, color:modules[c2[0]].color });
+  }
+
+  function draw() {
+    ctx.clearRect(0,0,W,H);
+    conns.forEach(([a,b])=>{
+      ctx.beginPath();
+      ctx.moveTo(modules[a].x,modules[a].y);
+      ctx.lineTo(modules[b].x,modules[b].y);
+      ctx.strokeStyle='rgba(74,140,255,0.1)';
+      ctx.lineWidth=1;
+      ctx.setLineDash([4,4]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    });
+    pulses=pulses.filter(p=>p.t<=1);
+    pulses.forEach(p=>{
+      p.t+=p.speed;
+      const f=modules[p.from], t2=modules[p.to];
+      const x=f.x+(t2.x-f.x)*p.t, y=f.y+(t2.y-f.y)*p.t;
+      ctx.beginPath();
+      ctx.arc(x,y,3,0,Math.PI*2);
+      ctx.fillStyle=p.color;
+      ctx.shadowColor=p.color;
+      ctx.shadowBlur=8;
+      ctx.fill();
+      ctx.shadowBlur=0;
+    });
+    modules.forEach(m=>{
+      ctx.beginPath();
+      ctx.roundRect(m.x-48,m.y-20,96,40,7);
+      ctx.fillStyle='rgba(8,13,28,0.9)';
+      ctx.strokeStyle=m.color;
+      ctx.lineWidth=1;
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle=m.color;
+      ctx.font='8px "DM Mono",monospace';
+      ctx.textAlign='center';
+      ctx.fillText(m.label,m.x,m.y+3);
+    });
+    frame++;
+    if(frame%25===0) spawn();
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>

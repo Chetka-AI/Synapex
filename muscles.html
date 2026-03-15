@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artificial Muscles — SYNAPEX PROTOCOL</title>
+<meta name="description" content="Bio-inspired fiber bundle actuation — the proprietary artificial muscle technology of SYNAPEX Protocol.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .fiber-vis { display: flex; flex-direction: column; gap: 10px; padding: 20px 0; }
+  .fiber-strand {
+    display: flex; align-items: center; gap: 4px;
+    animation: fiberContract 3s ease-in-out infinite;
+  }
+  .fiber-strand:nth-child(even) { animation-direction: reverse; }
+  .fiber-strand:nth-child(1) { animation-delay: 0s; }
+  .fiber-strand:nth-child(2) { animation-delay: 0.12s; }
+  .fiber-strand:nth-child(3) { animation-delay: 0.24s; }
+  .fiber-strand:nth-child(4) { animation-delay: 0.36s; }
+  .fiber-strand:nth-child(5) { animation-delay: 0.48s; }
+  .fiber-strand:nth-child(6) { animation-delay: 0.6s; }
+  .fiber-strand:nth-child(7) { animation-delay: 0.72s; }
+  .fiber-strand:nth-child(8) { animation-delay: 0.84s; }
+  .fiber-strand:nth-child(9) { animation-delay: 0.96s; }
+  .fiber-strand:nth-child(10) { animation-delay: 1.08s; }
+  @keyframes fiberContract {
+    0%, 100% { transform: scaleX(1); }
+    50% { transform: scaleX(0.35); }
+  }
+  .fn { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); flex-shrink: 0; }
+  .fb { flex: 1; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); opacity: 0.5; }
+  .fn2 { width: 10px; height: 10px; border-radius: 50%; background: var(--accent2); box-shadow: 0 0 8px var(--accent2); flex-shrink: 0; }
+
+  .hierarchy-layer {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 12px 0;
+    border-left: 3px solid var(--accent);
+    transition: all 0.3s;
+  }
+  .hierarchy-layer:hover { border-color: var(--border2); transform: translateX(4px); }
+  .hierarchy-layer:nth-child(2) { border-left-color: var(--accent2); }
+  .hierarchy-layer:nth-child(3) { border-left-color: var(--purple); }
+  .hierarchy-layer:nth-child(4) { border-left-color: var(--gold); }
+  .hl-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px; font-weight: 700;
+    color: #fff; margin-bottom: 6px;
+  }
+  .hl-text { font-size: 14px; color: var(--body); line-height: 1.7; margin: 0; }
+  .hl-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 6px;
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<canvas id="particles-canvas"></canvas>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo-mark"><span>S</span></div>
+    <span class="nav-brand-name">SYNAPEX</span>
+    <div class="nav-status"><div class="nav-status-dot"></div>Research</div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="lab.html">Laboratory</a></li>
+    <li><a href="muscles.html" class="active">Muscles</a></li>
+    <li><a href="vision.html">Vision AI</a></li>
+    <li><a href="mind.html">Mind</a></li>
+    <li><a href="synx.html">$SYNX</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="whitepaper 2.html" class="nav-cta">Whitepaper</a></li>
+  </ul>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page">
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-label"><span class="dot"></span>Technology I &mdash; The Body</div>
+  <h1 class="page-hero-title">Artificial <span class="accent">Muscles</span></h1>
+  <p class="page-hero-desc">
+    A proprietary actuation technology that replicates the hierarchical organisation of biological
+    muscle at the engineering level &mdash; the physical foundation of embodied intelligence.
+  </p>
+  <div class="page-hero-deco"></div>
+</div>
+
+<!-- DESIGN PHILOSOPHY -->
+<section class="section">
+  <div class="split">
+    <div class="reveal-left">
+      <div class="badge blue">Design Philosophy</div>
+      <h2 class="section-title">Biology Solved This <span class="accent">Billions of Years Ago</span></h2>
+      <p style="color:var(--body);line-height:1.75;margin-bottom:16px;">
+        Biological skeletal muscle achieves compliance, scalability, precise force gradation,
+        and energy efficiency through a hierarchical structure: individual contractile units
+        organised into fibers, fibers into bundles, bundles forming the complete muscle.
+      </p>
+      <p style="color:var(--body);line-height:1.75;margin-bottom:16px;">
+        Control is distributed &mdash; the nervous system activates subsets of this hierarchy,
+        producing behaviour that emerges from the collective rather than being explicitly programmed.
+      </p>
+      <p style="color:var(--body);line-height:1.75;">
+        SYNAPEX replicates this philosophy in engineered form. Our proprietary fiber architecture
+        organises individual electromagnetic actuation units into a hierarchical bundle structure
+        that mirrors the topology of biological muscle.
+      </p>
+    </div>
+    <div class="reveal-right">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;">
+        <div style="text-align:center;margin-bottom:12px;">
+          <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);opacity:0.7;">FIBER BUNDLE CONTRACTION</span>
+        </div>
+        <div class="fiber-vis">
+          <div class="fiber-strand"><div class="fn"></div><div class="fb"></div><div class="fn2"></div></div>
+          <div class="fiber-strand"><div class="fn"></div><div class="fb"></div><div class="fn2"></div></div>
+          <div class="fiber-strand"><div class="fn"></div><div class="fb"></div><div class="fn2"></div></div>
+          <div class="fiber-strand"><div class="fn"></div><div class="fb"></div><div class="fn2"></div></div>
+          <div class="fiber-strand"><div class="fn"></div><div class="fb"></div><div class="fn2"></div></div>
+          <div class="fiber-strand"><div class="fn"></div><div class="fb"></div><div class="fn2"></div></div>
+          <div class="fiber-strand"><div class="fn"></div><div class="fb"></div><div class="fn2"></div></div>
+          <div class="fiber-strand"><div class="fn"></div><div class="fb"></div><div class="fn2"></div></div>
+          <div class="fiber-strand"><div class="fn"></div><div class="fb"></div><div class="fn2"></div></div>
+          <div class="fiber-strand"><div class="fn"></div><div class="fb"></div><div class="fn2"></div></div>
+        </div>
+        <div style="text-align:center;margin-top:12px;">
+          <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">Activation is learned, not programmed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIERARCHICAL ARCHITECTURE -->
+<section class="section" style="border-top:1px solid var(--border);">
+  <div class="section-header reveal">
+    <div class="section-label">Hierarchical Architecture</div>
+    <h2 class="section-title">From Single Fiber to <span class="accent2">Complete Muscle</span></h2>
+    <p class="section-desc">Four levels of organisation, each adding emergent properties that the level below cannot achieve alone.</p>
+  </div>
+
+  <div style="max-width:700px;margin:0 auto;" class="stagger">
+    <div class="hierarchy-layer reveal">
+      <span class="hl-label" style="color:var(--accent);">Level 1 &mdash; Individual Actuation Unit</span>
+      <div class="hl-title">Electromagnetic Fiber</div>
+      <p class="hl-text">The smallest contractile element. A single electromagnetic unit that can produce a defined force quantum when activated. Analogous to a single sarcomere in biological muscle.</p>
+    </div>
+    <div class="hierarchy-layer reveal">
+      <span class="hl-label" style="color:var(--accent2);">Level 2 &mdash; Fiber Group</span>
+      <div class="hl-title">Fiber Bundle</div>
+      <p class="hl-text">Multiple fibers organised in parallel. Partial activation produces continuous force gradation. Integrated proprioceptive sensors at the bundle level report force, position, and velocity.</p>
+    </div>
+    <div class="hierarchy-layer reveal">
+      <span class="hl-label" style="color:var(--purple);">Level 3 &mdash; Bundle Array</span>
+      <div class="hl-title">Muscle Group</div>
+      <p class="hl-text">Multiple bundles forming a complete actuator. Motor unit recruitment strategy mirrors biology &mdash; force output scales linearly with active bundles. No architectural redesign at different force levels.</p>
+    </div>
+    <div class="hierarchy-layer reveal">
+      <span class="hl-label" style="color:var(--gold);">Level 4 &mdash; Complete System</span>
+      <div class="hl-title">Musculoskeletal Assembly</div>
+      <p class="hl-text">Multiple muscle groups attached to a skeletal structure via compliant tendons. Agonist-antagonist pairing enables joint control. The complete body presents an RL-native interface to the AI brain.</p>
+    </div>
+  </div>
+</section>
+
+<!-- KEY PROPERTIES -->
+<section class="section">
+  <div class="section-header center reveal">
+    <div class="section-label">System Properties</div>
+    <h2 class="section-title">What Makes It <span class="accent">Different</span></h2>
+  </div>
+
+  <div class="grid-2 stagger">
+    <div class="card reveal">
+      <div class="card-icon blue">&#9889;</div>
+      <div class="card-title">Hierarchical Force Scaling</div>
+      <div class="card-text">Force scales linearly with active fiber bundles &mdash; identical to motor unit recruitment in biology. A single architecture works from micro-precision to full-body force.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon teal">&#127899;</div>
+      <div class="card-title">Continuous Force Gradation</div>
+      <div class="card-text">Partial activation of bundles provides smooth, continuous modulation &mdash; essential for natural interaction with unstructured environments and stable RL-based motor learning.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon purple">&#128225;</div>
+      <div class="card-title">Proprioceptive Feedback</div>
+      <div class="card-text">Integrated sensing at every level: force, position, &Delta;length, velocity, temperature. The body continuously reports its state &mdash; enabling closed-loop learning without external sensors.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon gold">&#129302;</div>
+      <div class="card-title">RL-Native Interface</div>
+      <div class="card-text">Designed from the ground up for reinforcement learning. The system presents the same input-output structure to the neural network as biological muscle to the nervous system.</div>
+    </div>
+  </div>
+</section>
+
+<!-- RL INTEGRATION -->
+<section class="section" style="border-top:1px solid var(--border);">
+  <div class="split reverse">
+    <div class="reveal-right">
+      <div class="badge purple">Neural Integration</div>
+      <h2 class="section-title">Learned Movement, Not <span class="purple">Programmed</span></h2>
+      <p style="color:var(--body);line-height:1.75;margin-bottom:16px;">
+        Conventional robotic actuators expect a commanded joint angle and execute it &mdash;
+        inverse kinematics with no room for adaptation. SYNAPEX actuators present a biologically-analogous
+        interface: a set of activation signals whose physical consequences must be <em>learned</em>.
+      </p>
+      <p style="color:var(--body);line-height:1.75;margin-bottom:16px;">
+        A neural network trained to control SYNAPEX hardware develops motor representations
+        structurally similar to biological motor cortex &mdash; distributed, hierarchical, and
+        genuinely adaptive.
+      </p>
+      <div class="tags">
+        <span class="tag">Reinforcement Learning</span>
+        <span class="tag">Motor Cortex Analogy</span>
+        <span class="tag">Sim-to-Real Transfer</span>
+        <span class="tag">Emergent Coordination</span>
+      </div>
+    </div>
+    <div class="reveal-left">
+      <div class="console">
+        <div class="console-bar">
+          <div class="console-dot r"></div>
+          <div class="console-dot y"></div>
+          <div class="console-dot g"></div>
+          <span class="console-title">rl-training-loop</span>
+        </div>
+        <div class="console-body">
+<pre>
+<span class="dim">// RL Training Loop</span>
+<span class="hl">observation</span> = body.<span class="hl2">get_proprioception</span>()
+<span class="dim">  → force, position, velocity, temp</span>
+
+<span class="hl">action</span> = brain.<span class="hp">motor_module</span>(observation)
+<span class="dim">  → activation_signals[n_bundles]</span>
+
+body.<span class="hl2">apply_activation</span>(action)
+<span class="dim">  → electromagnetic fibers contract</span>
+
+<span class="hl">reward</span> = env.<span class="hg">evaluate</span>(target_motion)
+brain.<span class="hp">update</span>(observation, action, reward)
+
+<span class="dim">// The network discovers optimal
+// contraction patterns through RL
+// — not inverse kinematics</span>
+</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IP NOTICE -->
+<section class="section">
+  <div class="callout teal reveal">
+    <span class="callout-label">Proprietary Technology</span>
+    <p>The specific mechanism, materials, and electromagnetic architecture of the SYNAPEX actuation system
+    constitute proprietary intellectual property and are protected accordingly.
+    Full technical specifications are available to qualified partners under NDA.</p>
+  </div>
+
+  <div style="text-align:center;margin-top:40px;" class="reveal">
+    <a href="vision.html" class="btn btn-primary">Next: Vision AI &rarr;</a>
+    <a href="mind.html" class="btn btn-outline" style="margin-left:12px;">Modular Mind</a>
+  </div>
+</section>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">SYNAPEX PROTOCOL</div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="lab.html">Lab</a></li>
+      <li><a href="vision.html">Vision AI</a></li>
+      <li><a href="mind.html">Mind</a></li>
+      <li><a href="synx.html">$SYNX</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="footer-copy">v1.0 &middot; 2026</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

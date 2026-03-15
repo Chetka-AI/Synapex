@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>$SYNX Token — SYNAPEX PROTOCOL</title>
+<meta name="description" content="$SYNX utility token — compute access, governance, and the economy of SYNAPEX Protocol.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .token-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    margin: 24px 0;
+  }
+  .token-table th {
+    background: var(--surface2);
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .token-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--body);
+    vertical-align: top;
+  }
+  .token-table tr:hover td { background: rgba(74,140,255,0.02); }
+  .token-table td:first-child { color: var(--text); font-weight: 500; }
+  .token-table .pct { color: var(--accent); font-weight: 500; }
+
+  .token-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+  }
+  .token-table-wrap .token-table { margin: 0; }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<canvas id="particles-canvas"></canvas>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo-mark"><span>S</span></div>
+    <span class="nav-brand-name">SYNAPEX</span>
+    <div class="nav-status"><div class="nav-status-dot"></div>Protocol Active</div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="lab.html">Laboratory</a></li>
+    <li><a href="muscles.html">Muscles</a></li>
+    <li><a href="vision.html">Vision AI</a></li>
+    <li><a href="mind.html">Mind</a></li>
+    <li><a href="synx.html" class="active">$SYNX</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="whitepaper 2.html" class="nav-cta">Whitepaper</a></li>
+  </ul>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page">
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-label"><span class="dot" style="background:var(--gold);"></span>Token Economy</div>
+  <h1 class="page-hero-title">The <span class="gold">$SYNX</span> Token</h1>
+  <p class="page-hero-desc">
+    Not a speculative asset. A claim on computational infrastructure &mdash;
+    the fuel that powers everything SYNAPEX builds and enables.
+  </p>
+  <div class="page-hero-deco" style="border-color:rgba(232,200,122,0.15);"></div>
+</div>
+
+<!-- STATS -->
+<section class="section">
+  <div class="stats-bar reveal">
+    <div class="stat-cell">
+      <div class="stat-value" style="color:var(--accent);">1,000,000,000</div>
+      <div class="stat-label">Total Supply<br>(Fixed)</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-value" style="color:var(--accent2);">$0.004</div>
+      <div class="stat-label">IDO Price<br>Per Token</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-value" style="color:var(--gold);">$4,000,000</div>
+      <div class="stat-label">Fully Diluted<br>Valuation</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-value" style="color:var(--accent3);">$800,000</div>
+      <div class="stat-label">IDO<br>Target</div>
+    </div>
+  </div>
+</section>
+
+<!-- TOKEN UTILITY -->
+<section class="section" style="border-top:1px solid var(--border);">
+  <div class="section-header reveal">
+    <div class="section-label">Utility</div>
+    <h2 class="section-title">What $SYNX <span class="gold">Does</span></h2>
+    <p class="section-desc">Every function of the SYNAPEX Protocol is denominated in $SYNX. Compute costs money. Research costs money. Governance requires skin in the game.</p>
+  </div>
+
+  <div class="grid-2 stagger">
+    <div class="card reveal">
+      <div class="card-icon blue">&#9889;</div>
+      <div class="card-title">Compute Access</div>
+      <div class="card-text">$SYNX is the payment unit for GPU compute on the SYNAPEX network. One token represents a defined quantum of computational work. Backed by real, auditable infrastructure.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon purple">&#129302;</div>
+      <div class="card-title">Model Access</div>
+      <div class="card-text">Access SYNAPEX AI models &mdash; vision systems, motor controllers, multi-agent brain modules. Stake tokens for sustained access; spend for individual inference.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon teal">&#128499;</div>
+      <div class="card-title">Governance Rights</div>
+      <div class="card-text">Token holders vote on protocol upgrades, research budget allocation, and platform policy. Voting weight proportional to holdings with safeguards against plutocratic capture.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon gold">&#128300;</div>
+      <div class="card-title">Lab Currency</div>
+      <div class="card-text">All transactions in the Virtual Research Laboratory &mdash; dataset purchases, collaboration contracts, IP licensing &mdash; are denominated in $SYNX. A closed-loop economy.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TOKENOMICS -->
+<section class="section" style="border-top:1px solid var(--border);">
+  <div class="section-header reveal">
+    <div class="section-label">Tokenomics</div>
+    <h2 class="section-title">Token <span class="accent">Distribution</span></h2>
+  </div>
+
+  <div class="token-table-wrap reveal">
+    <table class="token-table">
+      <thead>
+        <tr>
+          <th>Allocation</th>
+          <th>%</th>
+          <th>Tokens</th>
+          <th>Vesting</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Public Sale / IDO</td><td class="pct">20%</td><td>200,000,000</td><td>30% TGE, 6mo linear</td><td>Community fundraise</td></tr>
+        <tr><td>Ecosystem &amp; Research</td><td class="pct">20%</td><td>200,000,000</td><td>3yr linear, monthly</td><td>Lab grants, model rewards</td></tr>
+        <tr><td>Team &amp; Founders</td><td class="pct">15%</td><td>150,000,000</td><td>1yr cliff, 3yr linear</td><td>Long-term alignment</td></tr>
+        <tr><td>Foundation Reserve</td><td class="pct">13%</td><td>130,000,000</td><td>2yr cliff, 3yr linear</td><td>Sustainability &amp; Series A bridge</td></tr>
+        <tr><td>Liquidity (DEX + CEX)</td><td class="pct">15%</td><td>150,000,000</td><td>Staged over 12mo</td><td>Market infrastructure</td></tr>
+        <tr><td>Strategic Partners</td><td class="pct">10%</td><td>100,000,000</td><td>6mo cliff, 18mo linear</td><td>GPU providers, AI labs</td></tr>
+        <tr><td>Private Round</td><td class="pct">7%</td><td>70,000,000</td><td>6mo cliff, 18mo linear</td><td>Pre-IDO capital @ $0.0024</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ALLOCATION BARS -->
+  <div id="allocSection" class="reveal" style="margin-top:40px;">
+    <div class="alloc-row"><span class="alloc-label">Public Sale / IDO</span><div class="alloc-bar-wrap"><div class="alloc-bar" data-width="20"></div></div><span class="alloc-pct">20%</span></div>
+    <div class="alloc-row"><span class="alloc-label">Ecosystem &amp; Research</span><div class="alloc-bar-wrap"><div class="alloc-bar" data-width="20"></div></div><span class="alloc-pct">20%</span></div>
+    <div class="alloc-row"><span class="alloc-label">Team &amp; Founders</span><div class="alloc-bar-wrap"><div class="alloc-bar" data-width="15"></div></div><span class="alloc-pct">15%</span></div>
+    <div class="alloc-row"><span class="alloc-label">Foundation Reserve</span><div class="alloc-bar-wrap"><div class="alloc-bar" data-width="13"></div></div><span class="alloc-pct">13%</span></div>
+    <div class="alloc-row"><span class="alloc-label">Liquidity (Total)</span><div class="alloc-bar-wrap"><div class="alloc-bar" data-width="15" style="background:linear-gradient(90deg,#00d4a8,#4a8cff)"></div></div><span class="alloc-pct" style="color:var(--accent2)">15%</span></div>
+    <div class="alloc-row"><span class="alloc-label">Strategic Partners</span><div class="alloc-bar-wrap"><div class="alloc-bar" data-width="10"></div></div><span class="alloc-pct">10%</span></div>
+    <div class="alloc-row"><span class="alloc-label">Private Round</span><div class="alloc-bar-wrap"><div class="alloc-bar" data-width="7" style="background:linear-gradient(90deg,#e8c87a,#ff9a3d)"></div></div><span class="alloc-pct" style="color:var(--gold)">7%</span></div>
+  </div>
+</section>
+
+<!-- BURN MECHANISM -->
+<section class="section">
+  <div class="split">
+    <div class="reveal-left">
+      <div class="badge red">Deflationary</div>
+      <h2 class="section-title">Burn <span class="accent3">Mechanism</span></h2>
+      <p style="color:var(--body);line-height:1.75;margin-bottom:16px;">
+        5% of all platform fees &mdash; compute purchases, model access, laboratory transactions &mdash; are
+        permanently and irrevocably burned at the smart contract level. No governance vote can override this.
+      </p>
+      <p style="color:var(--body);line-height:1.75;">
+        As the SYNAPEX ecosystem scales, every transaction makes every remaining token more scarce.
+        Growth and scarcity are structurally inseparable from the first day of platform operation.
+      </p>
+    </div>
+    <div class="reveal-right">
+      <div class="callout reveal">
+        <span class="callout-label">Founder Alignment &mdash; No Early Exits</span>
+        <p>Founder allocation (15%) carries a 12-month cliff and 36-month linear vesting.
+        Zero founder tokens enter circulation during the first year. Operational costs paid from treasury in USDT.</p>
+      </div>
+      <div class="callout gold reveal" style="margin-top:12px;">
+        <span class="callout-label">Governance Safeguard</span>
+        <p>No single wallet may hold &gt;5% of circulating supply without enhanced disclosure.
+        Founder/team tokens excluded from governance during vesting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USE OF PROCEEDS -->
+<section class="section" style="border-top:1px solid var(--border);">
+  <div class="section-header reveal">
+    <div class="section-label">Use of Proceeds</div>
+    <h2 class="section-title">Where the <span class="gold">Capital</span> Goes</h2>
+  </div>
+
+  <div class="grid-2 stagger">
+    <div class="card reveal">
+      <div class="card-icon blue">&#128300;</div>
+      <div class="card-title">R&amp;D &mdash; 45%</div>
+      <div class="card-text">Artificial muscle prototype &amp; materials. Own GPU server cluster. RL motor model training. Multi-agent brain development &amp; simulation.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon teal">&#128167;</div>
+      <div class="card-title">Market Infrastructure &mdash; 25%</div>
+      <div class="card-text">DEX launch pool USDT pairing. Progressive liquidity deepening. CEX listing fees &amp; market maker deposits.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon gold">&#128227;</div>
+      <div class="card-title">Growth &amp; Ecosystem &mdash; 20%</div>
+      <div class="card-text">KOL partnerships. Developer SDK &amp; hackathons. Virtual Lab user acquisition. Academic partnerships.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon purple">&#9881;</div>
+      <div class="card-title">Operations &amp; Legal &mdash; 10%</div>
+      <div class="card-text">Smart contract audit (CertiK/Hacken). MiCA compliance. Core team infrastructure. Treasury reserve.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="section" style="border-top:1px solid var(--border);">
+  <div class="section-header reveal">
+    <div class="section-label">Development Roadmap</div>
+    <h2 class="section-title">Five Phases. <span class="accent">Real Milestones.</span></h2>
+    <p class="section-desc">Each phase delivers standalone value and funds the next.</p>
+  </div>
+
+  <div class="timeline stagger">
+    <div class="timeline-item reveal">
+      <div class="timeline-phase">Phase 0 &middot; Now &mdash; Q2 2026 &middot; Bootstrap</div>
+      <div class="timeline-title">Proof of Existence &mdash; Zero External Capital</div>
+      <div class="tags" style="margin-top:8px;">
+        <span class="tag">Whitepaper v1</span>
+        <span class="tag">Website + Brand</span>
+        <span class="tag">Pre-Lab Apps</span>
+        <span class="tag">Vision AI Playground</span>
+        <span class="tag">Community Launch</span>
+        <span class="tag">Grant Applications</span>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-phase">Phase 1 &middot; Q2&ndash;Q3 2026 &middot; Private Round</div>
+      <div class="timeline-title">Capital Formation &mdash; Private Sale</div>
+      <div class="tags" style="margin-top:8px;">
+        <span class="tag">Private Sale: 7% @ 40% Discount</span>
+        <span class="tag">Smart Contracts Testnet</span>
+        <span class="tag">Muscle Prototype v1</span>
+        <span class="tag">First RL Motor Model</span>
+        <span class="tag">Audit Commissioned</span>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-phase">Phase 2 &middot; Q3&ndash;Q4 2026 &middot; Public IDO</div>
+      <div class="timeline-title">Launch &mdash; Token &amp; Laboratory</div>
+      <div class="tags" style="margin-top:8px;">
+        <span class="tag">Public IDO: $800K Target</span>
+        <span class="tag">DEX Listing</span>
+        <span class="tag">Virtual Lab Beta</span>
+        <span class="tag">DAO Governance Live</span>
+        <span class="tag">Developer SDK v0.1</span>
+        <span class="tag">Burn Mechanism Active</span>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-phase">Phase 3 &middot; Q1&ndash;Q2 2027</div>
+      <div class="timeline-title">Intelligence &mdash; Multi-Agent Brain</div>
+      <div class="tags" style="margin-top:8px;">
+        <span class="tag">Perception Module v1</span>
+        <span class="tag">Brain Integration</span>
+        <span class="tag">Simulation Suite</span>
+        <span class="tag">Muscle System v2</span>
+        <span class="tag">IP Registration Tools</span>
+        <span class="tag">Series A Prep</span>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-phase">Phase 4 &middot; H2 2027+</div>
+      <div class="timeline-title">Embodiment &mdash; Full Humanoid Integration</div>
+      <div class="tags" style="margin-top:8px;">
+        <span class="tag">Full Prototype Assembly</span>
+        <span class="tag">Body + Mind Integration</span>
+        <span class="tag">Autonomous Navigation Demo</span>
+        <span class="tag">Series A Raise</span>
+        <span class="tag">B2B Licensing</span>
+        <span class="tag">Hardware Programme</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERIES A -->
+<section class="section">
+  <div class="section-header center reveal">
+    <div class="section-label">Growth</div>
+    <h2 class="section-title">Path to <span class="accent2">Series A</span></h2>
+    <p class="section-desc">$2M&ndash;$5M from leading AI, robotics, and Web3 funds. 18&ndash;24 months post-IDO.</p>
+  </div>
+
+  <div class="grid-2 stagger">
+    <div class="card reveal">
+      <div class="card-title">&#127919; Series A Milestones</div>
+      <div class="card-text" style="line-height:2;">
+        1,000+ active Virtual Lab users<br>
+        Measurable on-chain compute consumption<br>
+        Functioning muscle prototype &mdash; public demo<br>
+        Multi-agent brain v1 in simulation<br>
+        Core team of 3&ndash;5 operational
+      </div>
+    </div>
+    <div class="card reveal">
+      <div class="card-title">&#128640; What Series A Builds</div>
+      <div class="card-text" style="line-height:2;">
+        Full team of 8&ndash;15 researchers &amp; engineers<br>
+        Own 20&ndash;50 GPU colocation cluster<br>
+        Dedicated physical research laboratory<br>
+        Full humanoid prototype &mdash; body &amp; mind<br>
+        B2B licensing &amp; hardware programme
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">SYNAPEX PROTOCOL</div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="lab.html">Lab</a></li>
+      <li><a href="muscles.html">Muscles</a></li>
+      <li><a href="vision.html">Vision AI</a></li>
+      <li><a href="mind.html">Mind</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="footer-copy">v1.0 &middot; 2026</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
